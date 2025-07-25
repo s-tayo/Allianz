@@ -1,0 +1,151 @@
+root@k8server ~/testp -  $ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	file1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+root@k8server ~/testp -  $ git add .
+root@k8server ~/testp -  $ git commit -m "A"
+[master (root-commit) e23a38a] A
+ Committer: root <root@k8server.example.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ vi file1.txt 
+root@k8server ~/testp -  (master) $ git add .
+root@k8server ~/testp -  (master) $ git commit -m "B"
+[master e872d67] B
+ Committer: root <root@k8server.example.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ git checkout f1
+error: pathspec 'f1' did not match any file(s) known to git
+root@k8server ~/testp -  (master) $ git checkout -b f1
+Switched to a new branch 'f1'
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ vi file1.txt 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ git add .
+root@k8server ~/testp -  (f1) $ git commit -m "c"
+[f1 d57ec38] c
+ Committer: root <root@k8server.example.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ vi file1.txt 
+root@k8server ~/testp -  (f1) $ git add .
+root@k8server ~/testp -  (f1) $ git commit -m "d"
+[f1 2870cdf] d
+ Committer: root <root@k8server.example.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ git status
+On branch f1
+nothing to commit, working tree clean
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ 
+root@k8server ~/testp -  (f1) $ git log --onelinw
+fatal: unrecognized argument: --onelinw
+root@k8server ~/testp -  (f1) $ git log --oneline
+2870cdf (HEAD -> f1) d
+d57ec38 c
+e872d67 (master) B
+e23a38a A
+root@k8server ~/testp -  (f1) $ git checkout master
+Switched to branch 'master'
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ git cherry-pick d57ec38
+[master 4cfb4ba] c
+ Date: Sat Apr 19 13:14:37 2025 -0700
+ Committer: root <root@k8server.example.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ cat file1.txt 
+hi
+hhh
+ccc
+root@k8server ~/testp -  (master) $ git log --onelinw
+fatal: unrecognized argument: --onelinw
+root@k8server ~/testp -  (master) $ git log --oneline
+4cfb4ba (HEAD -> master) c
+e872d67 B
+e23a38a A
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ 
+root@k8server ~/testp -  (master) $ git log --oneline
+4cfb4ba (HEAD -> master) c
+e872d67 B
+e23a38a A
