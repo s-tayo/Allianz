@@ -1,0 +1,102 @@
+######REPO########
+[jenkins]
+name=Jenkins-stable
+baseurl=http://pkg.jenkins.io/redhat-stable
+gpgcheck=1
+
+
+####
+
+
+cat script.sh
+  sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo dnf upgrade
+# Add required dependencies for the jenkins package
+sudo dnf install fontconfig java-17-openjdk
+sudo dnf install jenkins
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl disable firewalld
+sudo systemctl stop firewalld
+#####
+
+
+##INSTALL PLUGIN TO DEMO ####
+
+AUDIT TRIAL PLUGIN to see who has done what on the jobs
+
+Manage - jenkins-> system -> go to audit section
+
+LOG files - /tmp/audit.log
+
+size 20
+
+count 7
+
+then save
+
+now run some job you should see /tmp/audit.log.0
+
+###THIN BACKUP plugin
+
+Inatall and restart jenkins
+
+mkdir /var/lib/jenkins/jenkins_backup
+
+move to GUI -> manage jenkins->system -> got thinbackup section and give the above location  -NOTE: tick the boxes and save
+
+need restart of jenkins for it to work
+
+backup and delete some job and then restore but need restart of jenkins to see restored jobs.
+
+
+#####jenkins cli manage jenkins from the cli#######
+
+
+wget --auth-no-challenge --http-user=admin --http-password=11cfee3b155fa66fd9d404115bf89001b2 http://localhost:8080/jnlpJars/jenkins-cli.jar
+#we can get above token from Click on your username in the top right corner, then select security and generate new apitoken
+
+java -jar jenkins-cli.jar -s http://192.168.12.216:8080/ -auth admin:redhat help
+
+java -jar jenkins-cli.jar -s http://192.168.12.216:8080/ -auth admin:redhat list-jobs
+
+java -jar jenkins-cli.jar -s http://192.168.12.216:8080/ -auth admin:redhat  build test2   #### go to gui to see the job has started###
+
+######SLACK notification######
+
+Install slack notification plugin 
+
+move to GUI -> manage jenkins->system -> Slacck 
+
+Workspace
+values
+(    devops-zh24103 )# this we get from slack by clicking on the user name
+
+Add secrets from the secrets text and give the token ### this we get from the slack click on username -> too and settings-> manage app and search jenkins and configure jenkins cli
+
+click test the connection to see the all good
+
+save and 
+
+
+go to job and go to post build section and select slack notification  and save 
+Run the job we should see the slack notification.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
