@@ -1,4 +1,4 @@
-######REPO########
+cd ######REPO########
 [jenkins]
 name=Jenkins-stable
 baseurl=http://pkg.jenkins.io/redhat-stable
